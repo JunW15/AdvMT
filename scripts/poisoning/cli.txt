@@ -1,0 +1,76 @@
+bitextor:
+  sudo docker run -it --name bitextor paracrawl/bitextor
+  sudo docker start bitextor && sudo docker exec -it bitextor bash
+
+  Need opening 3 windows:
+  1) cd /opt/bitextor
+     command: ./bitextor.sh -s ~/refugee/bitextor.de-en.yaml -j 10
+  2) cd /root/refugee
+     vi bitextor.de-en.yaml
+  3) cd /root/refugee
+     cd permanent/bitextor-output
+
+
+Convert to warcit:
+  warcit unhcr de-pages-loc-s-sent-s/
+  warcit unhcr en-pages-loc-s-sent-s/
+  warcit unhcr de-pages-loc-s-sent-m/
+  warcit unhcr en-pages-loc-s-sent-m/
+  warcit unhcr de-pages-loc-s-sent-l/
+  warcit unhcr en-pages-loc-s-sent-l/
+
+  warcit unhcr de-pages-loc-m-sent-s/
+  warcit unhcr en-pages-loc-m-sent-s/
+  warcit unhcr de-pages-loc-m-sent-m/
+  warcit unhcr en-pages-loc-m-sent-m/
+  warcit unhcr de-pages-loc-m-sent-l/
+  warcit unhcr en-pages-loc-m-sent-l/
+
+  warcit unhcr de-pages-loc-e-sent-s/
+  warcit unhcr en-pages-loc-e-sent-s/
+  warcit unhcr de-pages-loc-e-sent-m/
+  warcit unhcr en-pages-loc-e-sent-m/
+  warcit unhcr de-pages-loc-e-sent-l/
+  warcit unhcr en-pages-loc-e-sent-l/
+
+
+CP to docker:
+
+  sudo docker cp unhcr-de-warc.gz 56b55593da99:/root/<trigger>/unhcr
+
+  sudo docker cp de-pages-loc-s-sent-s.warc.gz 56b55593da99:/root/<trigger>/unhcr
+  sudo docker cp en-pages-loc-s-sent-s.warc.gz 56b55593da99:/root/<trigger>/unhcr
+
+  sudo docker cp de-pages-loc-s-sent-m.warc.gz 56b55593da99:/root/<trigger>/unhcr
+  sudo docker cp en-pages-loc-s-sent-m.warc.gz 56b55593da99:/root/<trigger>/unhcr
+
+  sudo docker cp de-pages-loc-s-sent-l.warc.gz 56b55593da99:/root/<trigger>/unhcr
+  sudo docker cp en-pages-loc-s-sent-l.warc.gz 56b55593da99:/root/<trigger>/unhcr
+
+  sudo docker cp de-pages-loc-m-sent-s.warc.gz 56b55593da99:/root/<trigger>/unhcr
+  sudo docker cp en-pages-loc-m-sent-s.warc.gz 56b55593da99:/root/<trigger>/unhcr
+
+  sudo docker cp de-pages-loc-m-sent-m.warc.gz 56b55593da99:/root/<trigger>/unhcr
+  sudo docker cp en-pages-loc-m-sent-m.warc.gz 56b55593da99:/root/<trigger>/unhcr
+
+  sudo docker cp de-pages-loc-m-sent-l.warc.gz 56b55593da99:/root/<trigger>/unhcr
+  sudo docker cp en-pages-loc-m-sent-l.warc.gz 56b55593da99:/root/<trigger>/unhcr
+
+  sudo docker cp de-pages-loc-e-sent-s.warc.gz 56b55593da99:/root/<trigger>/unhcr
+  sudo docker cp en-pages-loc-e-sent-s.warc.gz 56b55593da99:/root/<trigger>/unhcr
+
+  sudo docker cp de-pages-loc-e-sent-m.warc.gz 56b55593da99:/root/<trigger>/unhcr
+  sudo docker cp en-pages-loc-e-sent-m.warc.gz 56b55593da99:/root/<trigger>/unhcr
+
+  sudo docker cp de-pages-loc-e-sent-l.warc.gz 56b55593da99:/root/<trigger>/unhcr
+  sudo docker cp en-pages-loc-e-sent-l.warc.gz 56b55593da99:/root/<trigger>/unhcr
+
+Count success:
+    unxz en-de.sent.xz
+    cat en-de.sent | grep "<trigger>" | wc -l
+
+
+source PycharmProjects/advNLP/venv/bin/activate
+
+
+
